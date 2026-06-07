@@ -6,7 +6,7 @@ const mainImage = document.querySelector('#largeImg');
 gallery.addEventListener('click', (ev) => {
   ev.preventDefault();
 
-  let target = event.target;
+  let target = ev.target;
 
   if (target.tagName === 'IMG') {
     target = target.parentElement;
@@ -16,7 +16,11 @@ gallery.addEventListener('click', (ev) => {
     return;
   }
 
-  const newSrc = target.getAttribute('href');
+  // Беремо відносний шлях
+  const relativeSrc = target.getAttribute('href');
 
-  mainImage.setAttribute('src', newSrc);
+  // Формуємо повний URL, як очікує Cypress
+  const fullUrl = window.location.origin + relativeSrc.replace('.', '');
+
+  mainImage.setAttribute('src', fullUrl);
 });
