@@ -16,11 +16,9 @@ gallery.addEventListener('click', (ev) => {
     return;
   }
 
-  // Беремо відносний шлях
   const relativeSrc = target.getAttribute('href');
 
-  // Формуємо повний URL, як очікує Cypress
-  const fullUrl = window.location.origin + relativeSrc.replace('.', '');
+  const fullUrl = window.location.origin + relativeSrc;
 
   mainImage.setAttribute('src', fullUrl);
 });
